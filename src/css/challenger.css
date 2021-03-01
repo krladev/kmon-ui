@@ -42,11 +42,27 @@
     color: #666666;
 }
 
-.kui-answer div:hover{
+.kui-your-answer{
+    font-weight: bold;
+    font-size: 2rem;
+    margin: auto;
+}
+
+.kui-your-answer div{
+    padding: 1rem;
+    margin: 1rem;
     border: 1px solid #cccccc;
     background-color: #ff66b9;
     color: #ffffff;
-    cursor: pointer;
+}
+
+@media only screen and (min-width: 1025px) {
+    .kui-answer div:hover{
+        border: 1px solid #cccccc;
+        background-color: #ff66b9;
+        color: #ffffff;
+        cursor: pointer;
+    }
 }
 
 .kui-progress{
