@@ -5,6 +5,7 @@ import { storeChallenger } from '../engine/storeChallenger';
 import { types } from '../types/types';
 
 export const Welcome = ({ history }) => {
+    const defaultNumQuestions = 10;
 
     const { dispatch } = useContext(AuthContext);
 
@@ -13,7 +14,7 @@ export const Welcome = ({ history }) => {
         setName(e.target.value);
     };
 
-    const [numQuestions, setNumQuestions] = useState(10);
+    const [numQuestions, setNumQuestions] = useState(defaultNumQuestions);
     const handleNumQuestions = (e) => {
         setNumQuestions(e.target.options[e.target.selectedIndex].value);
     };
@@ -53,13 +54,13 @@ export const Welcome = ({ history }) => {
             { errorMsg.length ? <div className='alert alert-danger'>{ errorMsg }</div>:"" }
             <form onSubmit={ handleLogin }>
                 <div className="form-group mb-2">
-                    <label for="yourName" className="mb-1">Your Name</label>
+                    <label htmlFor="yourName" className="mb-1">Your Name</label>
                     <input type="text" className="form-control" id="yourName" aria-describedby="Your Name" placeholder="" value={name} onChange={ handleName } autoComplete="off" />
                 </div>
                 <div className="form-group mb-2">
-                    <label for="yourName" className="mb-1">Number of questions</label>
+                    <label htmlFor="numQuestions" className="mb-1">Number of questions</label>
                     <select className="form-control" id="numQuestions" onChange={ handleNumQuestions }>
-                        <option value="10">10</option>
+                        <option value={ defaultNumQuestions }>{defaultNumQuestions}</option>
                         <option value="20">20</option>
                         <option value="30">30</option>
                         <option value="40">40</option>
