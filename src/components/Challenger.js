@@ -1,16 +1,17 @@
 import React, { useContext, useState } from 'react'
-
 import { FaCheck, FaTimes} from 'react-icons/fa'
+import { cloneDeep } from 'lodash'
+import { Redirect } from "react-router-dom";
+
 import { AuthContext } from '../auth/AuthContext'
 import { types } from '../types/types';
 
 export const Challenger = ({ history }) => {
 
     const { session, dispatch } = useContext(AuthContext);
+    const challenger = session.challenger;
 
-    const [challenger, setChallenger] = useState(session.challenger);
-
-    const [userAnswer, setUserAnswer] = useState();
+    const [userAnswer, setUserAnswer] = useState(null);
 
     const question = challenger.questions[challenger.currentQuestion - 1];
     const answers = challenger.answers[challenger.currentQuestion - 1];
@@ -27,21 +28,19 @@ export const Challenger = ({ history }) => {
         const theAnswer = e.target.innerText * 1;
         setUserAnswer(theAnswer);
 
-        const newChallenger = {...challenger};
+        const newChallenger = cloneDeep(challenger);
 
         const currentIndex = newChallenger.currentQuestion - 1;
+        const isCorrect = newChallenger.correctAnswers[currentIndex] === theAnswer;
         newChallenger.userAnswers.push(theAnswer);
 
-        const wasCorrect = newChallenger.correctAnswers[currentIndex] === theAnswer;
-
-        newChallenger.score = wasCorrect
+        newChallenger.score = isCorrect
             ? newChallenger.score + 1
             : newChallenger.score;
-        newChallenger.currentQuestion++;
 
         let secondsDelay = 0;
 
-        if(wasCorrect){
+        if(isCorrect){
             document.getElementById("audioSuccess").play();
             secondsDelay = 2;
         }
@@ -50,13 +49,29 @@ export const Challenger = ({ history }) => {
             secondsDelay = 4;
         }
 
+        // ending animation with delay
         window.setTimeout(() => {
-            setChallenger(newChallenger);
+            if(newChallenger.currentQuestion !== newChallenger.questions.length){
+                newChallenger.currentQuestion++;
+            }
             setUserAnswer(null);
+
+            dispatch({
+                type: types.login,
+                payload: {
+                    name: session.name,
+                    numQuestions: session.numQuestions,
+                    challenger: newChallenger
+                }
+            });
         }, secondsDelay * 1000);
     }
 
     return (
+        challenger.questions.length === challenger.userAnswers.length
+        ?
+        <Redirect to="/results" />
+        :
         <div className="kui-challenger">
             <div className="row kui-progress">
                 <div className="d-none d-sm-block col-md-6 kui-question-counter">
@@ -103,7 +118,7 @@ export const Challenger = ({ history }) => {
             </div>
 
             <audio id="audioSuccess">
-                <source src="assets/sounds/Ta Da-SoundBible.com-1884170640.mp3" type="audio/mpeg" />
+                <source src="assets/sounds/Ta-Da-SoundBible.com-1884170640.mp3" type="audio/mpeg" />
             </audio>
             <audio id="audioError">
                 <source src="assets/sounds/Sad_Trombone-Joe_Lamb-665429450.mp3" type="audio/mpeg" />
