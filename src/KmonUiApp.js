@@ -24,7 +24,7 @@ export const KmonUiApp = () => {
 
     return (
         <AuthContext.Provider value={{session, dispatch}}>
-            <div class="container-fluid">
+            <div className="container-fluid">
                 {/* <Challenger /> */}
                 {/* <Welcome /> */}
 
