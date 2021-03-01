@@ -6,8 +6,11 @@ import { Challenger } from './components/Challenger'
 import { Welcome } from './components/Welcome';
 
 import './css/app.css';
+import './css/progress.css';
 import './css/challenger.css';
+import './css/results.css';
 import './css/welcome.css';
+
 import { AppRouter } from './routers/AppRouter';
 
 const init = () => {

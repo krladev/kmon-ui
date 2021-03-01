@@ -65,30 +65,6 @@
     }
 }
 
-.kui-progress{
-    font-size: 1.5rem;
-    margin-bottom: 0.2rem;
-    background-color: #fff56c;
-    font-style: italic;
-    border-bottom: 3px solid #cccccc;
-}
-
-.kui-score{
-    text-align: right;
-}
-
-.kui-finish{
-    text-align: right;
-}
-
-.kui-finish button{
-    border: 1px solid #999999;
-    background-color:rgba(255, 255, 255, 0.6);
-    display: inline;
-    margin: 0 0 0.2rem 0;
-    padding: 0.15rem 0.75rem;
-}
-
 .kui-qna{
     position: relative;
 }
@@ -110,14 +86,6 @@
 
 .kui-feedback-check{
     color: #14b621;
-}
-
-.kui-progress-bar{
-    position: absolute;
-    bottom:0;
-    width: 40%;
-    background-color: red;
-    height: 0.3rem;
 }
 
 .kui-feedback-cross{
