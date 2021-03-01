@@ -1,0 +1,34 @@
+.kui-summary .line{
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.kui-summary .bigger{
+    text-align: center;
+    font-size: 2.3rem;
+}
+
+.kui-summary ul.kui-answer-sheet{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1.6rem;
+}
+
+.kui-summary ul.kui-answer-sheet li{
+    text-align: center;
+}
+
+.kui-summary ul.kui-answer-sheet li.success span{
+    color: green;
+}
+
+.kui-summary ul.kui-answer-sheet li.error span{
+    color: red;
+}
+
+.correct-answer{
+    color: #cccccc !important;
+    font-size: 1.2rem;
+}
+
