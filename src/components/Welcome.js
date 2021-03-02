@@ -66,12 +66,7 @@ export const Welcome = ({ history }) => {
                         <option value="30">30</option>
                         <option value="40">40</option>
                     </select>
-                    {/* <input type="text" className="form-control" id="yourName" aria-describedby="Your Name" placeholder="" value={name} onChange={ handleName } autoComplete="off" /> */}
                 </div>
-                {/* <div className="form-group mb-2">
-                    <label for="parentEmail" className="mb-1">Your Parent's Email</label>
-                    <input type="email" className="form-control" id="parentEmail" aria-describedby="Your Parent's Email" placeholder="" value={parentEmail} onChange={ handleParentEmail } autoComplete="off" />
-                </div> */}
                 <div className="button-box">
                     <button type="submit" className="btn btn-primary">Start</button>
                 </div>
