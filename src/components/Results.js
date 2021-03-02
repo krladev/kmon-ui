@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { FaCheck, FaTimes} from 'react-icons/fa'
+import { Redirect } from 'react-router-dom';
 
 import { AuthContext } from '../auth/AuthContext'
 import { types } from '../types/types';
@@ -17,12 +18,16 @@ export const Results = ({ history }) => {
     }
 
     return (
+        challenger.questions.length !== challenger.userAnswers.length
+        ?
+        <Redirect to="/challenger" />
+        :
         <div className="kui-results">
             <div className="row kui-progress">
                 <div className="d-none d-sm-block col-md-10 kui-question-counter">
                     <u>{ session.name }</u> good job!
                 </div>
-                <div className="col-6 col-lg-1 col-md-2 kui-finish">
+                <div className="col-12 col-lg-1 col-md-2 kui-finish">
                     <button className="nav-item nav-link btn" onClick={ handleFinish }>Finish</button>
                 </div>
             </div>
